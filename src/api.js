@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: 'http://localhost:3001/api',
   headers: {
     'Content-Type': 'application/json',
-    'x-user-role': 'organizer' // or 'admin' depending on the action
+    'x-user-role': 'organizer' 
   }
 });
 

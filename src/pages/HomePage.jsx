@@ -8,7 +8,7 @@ const HomePage = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Check if user is logged in
+  
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -42,12 +42,12 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      {/* Header with conditional auth buttons or user info */}
+     
       <div className="header">
         <h1>All Events</h1>
         
         {user ? (
-          // Show user info and logout when signed in
+          
           <div className="user-info">
             <span className="user-welcome">
               Welcome, <strong>{user.name}</strong> ({user.role})
@@ -70,7 +70,7 @@ const HomePage = () => {
             </div>
           </div>
         ) : (
-          // Show Sign In/Sign Up buttons when not signed in
+          
           <div className="btn-group">
             <Link to="/login" className="btn btn-primary">
               Sign In
@@ -82,7 +82,7 @@ const HomePage = () => {
         )}
       </div>
 
-      {/* Events section */}
+      {}
       {events.length === 0 ? (
         <div className="loading">No events found</div>
       ) : (

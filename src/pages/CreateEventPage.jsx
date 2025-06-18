@@ -17,18 +17,18 @@ const CreateEventPage = () => {
   });
 
   useEffect(() => {
-    // Check if user is logged in and has permission
+    
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const userData = JSON.parse(storedUser);
       setUser(userData);
       
-      // Redirect if user doesn't have permission
+      
       if (userData.role !== 'organizer' && userData.role !== 'admin') {
         navigate('/');
       }
     } else {
-      // Redirect to login if not authenticated
+      
       navigate('/login');
     }
   }, [navigate]);
@@ -57,7 +57,6 @@ const CreateEventPage = () => {
         }
       });
 
-      // Simple redirect without delay
       navigate(`/events/${response.data.event.id}`);
 
     } catch (err) {
@@ -68,7 +67,6 @@ const CreateEventPage = () => {
     }
   };
 
-  // Show loading if checking authentication
   if (!user) {
     return (
       <div className="container">

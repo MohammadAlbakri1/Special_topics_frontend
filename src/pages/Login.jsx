@@ -18,13 +18,12 @@ const Login = () => {
       const res = await api.post('/users/login', { email, password });
       setMessage(`✅ Welcome, ${res.data.user.name}`);
       
-      // Store user data if needed (optional)
       localStorage.setItem('user', JSON.stringify(res.data.user));
       
-      // Redirect to homepage after successful login
+     
       setTimeout(() => {
         navigate('/');
-      }, 1000); // Small delay to show success message
+      }, 1000); 
       
     } catch (err) {
       setMessage(`❌ ${err.response?.data?.error || 'Login failed'}`);

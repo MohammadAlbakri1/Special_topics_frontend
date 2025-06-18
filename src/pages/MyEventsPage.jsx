@@ -11,12 +11,12 @@ const MyEventsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is logged in
+   
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {
-      // Redirect to login if not authenticated
+      
       navigate('/login');
       return;
     }
@@ -43,7 +43,7 @@ const MyEventsPage = () => {
     }
   }, [user]);
 
-  // Group events by status (upcoming vs past)
+
 
 
 
@@ -95,7 +95,7 @@ const MyEventsPage = () => {
         </div>
       ) : (
         <div>
-          {/* All Events */}
+     
           <h2 style={{ 
             color: '#2c3e50', 
             marginBottom: '20px',
@@ -116,7 +116,7 @@ const MyEventsPage = () => {
   );
 };
 
-// Event Card Component
+
 const EventCard = ({ event }) => {
   const eventDate = new Date(event.date);
   const claimedDate = new Date(event.claimed_at);
@@ -141,7 +141,7 @@ const EventCard = ({ event }) => {
           day: 'numeric'
         })}</p>
         
-        {/* Registration Info */}
+      
         <div style={{
           marginTop: '15px',
           padding: '12px',

@@ -24,20 +24,17 @@ const EventPage = () => {
       setUser(JSON.parse(storedUser));
     }
 
-    // Fetch event details
     api.get(`/events/${id}`)
       .then((res) => setEvent(res.data))
       .catch((err) => console.error('❌ Error fetching event:', err));
   }, [id]);
 
-  // Fetch weather data for the event
   useEffect(() => {
     const fetchWeatherData = async () => {
       setWeatherLoading(true);
       setWeatherError('');
       
       try {
-        // Extract city name from location (assumes location format like "City, Country" or just "City")
         const city = event.location.split(',')[0].trim();
         
         const response = await api.get(`/weather/weather?city=${encodeURIComponent(city)}`);
@@ -55,7 +52,7 @@ const EventPage = () => {
     }
   }, [event]);
 
-  // Check if user is already registered for this event
+ 
   useEffect(() => {
     if (user && event) {
       api.get(`/tickets/${user.id}`)
@@ -102,7 +99,7 @@ const EventPage = () => {
   };
 
   const handleDeleteEvent = async () => {
-    // Double confirmation for deletion
+   
     const confirmed = window.confirm(
       `Are you sure you want to delete "${event.title}"?\n\nThis action cannot be undone and will affect all registered users.`
     );
@@ -122,7 +119,7 @@ const EventPage = () => {
 
       setMessage('✅ Event deleted successfully! Redirecting...');
       
-      // Redirect to homepage after 2 seconds
+      
       setTimeout(() => {
         navigate('/');
       }, 2000);
@@ -134,7 +131,7 @@ const EventPage = () => {
     }
   };
 
-  // Check if user can delete this event
+ 
   const canDeleteEvent = user && (
     user.role === 'admin' || 
     (user.role === 'organizer' && event && user.id === event.organizer_id)
@@ -155,7 +152,7 @@ const EventPage = () => {
           ← Back to All Events
         </Link>
         
-        {/* Edit and Delete buttons for organizers/admins */}
+      
         {canDeleteEvent && (
           <div style={{ display: 'flex', gap: '10px' }}>
             <Link 
@@ -230,7 +227,7 @@ const EventPage = () => {
                   </p>
                 </div>
 
-                {/* Weather Card */}
+               
                 <div style={{ 
                   background: weatherLoading ? '#f8f9fa' : weather ? 'linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)' : '#f8f9fa',
                   padding: '15px', 
@@ -266,7 +263,7 @@ const EventPage = () => {
               </div>
             </div>
             
-            {/* Registration Section */}
+           
             <div style={{ 
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               padding: '25px',
@@ -343,14 +340,14 @@ const EventPage = () => {
             </div>
           </div>
           
-          {/* Message Display */}
+        
           {message && (
             <div className={`message ${message.includes('✅') ? 'success' : message.includes('⚠️') ? 'warning' : 'error'}`}>
               {message}
             </div>
           )}
 
-          {/* Enhanced Weather Information */}
+         
           {weather && !weatherError && (
             <div style={{ 
               background: 'linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)',
